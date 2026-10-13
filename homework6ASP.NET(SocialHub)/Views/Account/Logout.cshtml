@@ -1,0 +1,46 @@
+﻿@model homework6ASP.NET_SocialHub_.Models.User
+
+@{
+    ViewData["Title"] = "Вихід з акаунта";
+}
+
+<div class="row justify-content-center mt-5">
+    <div class="col-md-5">
+        <div class="card shadow-sm border-0 rounded-4">
+            <div class="card-body p-4 p-md-5 text-center">
+
+                <div class="bg-danger text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px; font-size: 24px;">
+                    <i class="bi bi-box-arrow-right"></i>
+                </div>
+                <h2 class="fw-bold mb-3">Вихід із системи</h2>
+
+                @if (Model != null)
+                {
+                    <p class="text-muted mb-4">Ви дійсно хочете вийти для користувача <strong>@Model.Username</strong>?</p>
+
+                    <form asp-action="Logout" method="post">
+                        <!-- Передаємо приховані поля, щоб метод POST прийняв об'єкт User із заповненим Id -->
+                        <input type="hidden" asp-for="Id" />
+                        <input type="hidden" asp-for="Username" />
+                        <input type="hidden" asp-for="Password" />
+
+                        <div class="d-grid gap-2 mb-3">
+                            <button type="submit" class="btn btn-danger btn-lg fw-semibold shadow-sm">Підтвердити вихід</button>
+                        </div>
+                    </form>
+                }
+                else
+                {
+                    <div class="alert alert-danger mb-4">
+                        @(TempData["Error"] ?? "Користувача не знайдено.")
+                    </div>
+                }
+
+                <div class="d-grid gap-2">
+                    <a asp-controller="Post" asp-action="Index" class="btn btn-outline-secondary">Скасувати (На головну)</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

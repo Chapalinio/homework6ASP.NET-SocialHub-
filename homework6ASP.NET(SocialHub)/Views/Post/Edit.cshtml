@@ -1,0 +1,47 @@
+﻿@model lesson6_ASP.NET.Models.Post
+
+@{
+    ViewData["Title"] = "Редагувати пост";
+}
+
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card shadow-sm">
+            <div class="card-body p-4">
+                <h2 class="fw-bold mb-4 text-center"><i class="bi bi-pencil-square"></i> Редагування поста</h2>
+
+                <form asp-action="Edit" method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                    <!-- Приховане поле для ID, щоб контролер знав, який пост оновлюється -->
+                    <input type="hidden" asp-for="Id" />
+                    <!-- Приховане поле для дати створення, щоб вона не затиралася поточною при редагуванні -->
+                    <input type="hidden" asp-for="CreatedAt" />
+
+                    <div class="mb-3">
+                        <label asp-for="Author" class="form-label fw-semibold">Автор</label>
+                        <input asp-for="Author" class="form-control" placeholder="Ім'я автора..." required />
+                        <span asp-validation-for="Author" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Title" class="form-label fw-semibold">Заголовок</label>
+                        <input asp-for="Title" class="form-control" placeholder="Заголовок поста..." required />
+                        <span asp-validation-for="Title" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Text" class="form-label fw-semibold">Текст</label>
+                        <textarea asp-for="Text" class="form-control" rows="6" placeholder="Текст поста..." required></textarea>
+                        <span asp-validation-for="Text" class="text-danger"></span>
+                    </div>
+
+                    <div class="d-flex justify-content-between align-items-center mt-4">
+                        <a asp-action="Index" class="btn btn-outline-secondary">Скасувати</a>
+                        <button type="submit" class="btn btn-primary px-4">Зберегти зміни</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

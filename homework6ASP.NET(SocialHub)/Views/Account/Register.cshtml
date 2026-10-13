@@ -1,0 +1,53 @@
+﻿@model homework6ASP.NET_SocialHub_.Models.User
+
+@{
+    ViewData["Title"] = "Реєстрація";
+    Layout = "_LogAndRegLayout";
+}
+
+<div class="row justify-content-center mt-5">
+    <div class="col-md-5">
+        <div class="card shadow-sm border-0 rounded-4">
+            <div class="card-body p-4 p-md-5">
+
+                <div class="text-center mb-4">
+                    <div class="bg-primary text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px; font-size: 24px;">
+                        <i class="bi bi-person-plus-fill"></i>
+                    </div>
+                    <h2 class="fw-bold">Створити акаунт</h2>
+                    <p class="text-muted small">Приєднуйтесь до SocialHub</p>
+                </div>
+
+                <form asp-action="Register" method="post">
+                    <div class="mb-3">
+                        <label asp-for="Username" class="form-label fw-semibold">Ім'я користувача</label>
+                        <div class="input-group">
+                            <span class="input-group-text bg-light"><i class="bi bi-person"></i></span>
+                            <input asp-for="Username" class="form-control" placeholder="Введіть логін..." required />
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <label asp-for="Password" class="form-label fw-semibold">Пароль</label>
+                        <div class="input-group">
+                            <span class="input-group-text bg-light"><i class="bi bi-lock"></i></span>
+                            <input asp-for="Password" type="password" class="form-control" placeholder="Введіть пароль..." required />
+                        </div>
+                    </div>
+
+                    <div class="d-grid gap-2 mb-3">
+                        <button type="submit" class="btn btn-primary btn-lg fw-semibold shadow-sm">Зареєструватися</button>
+                    </div>
+                </form>
+
+                <hr class="my-4 text-muted">
+
+                <!-- Посилання на сторінку Логіну -->
+                <div class="text-center">
+                    <p class="text-muted mb-0">Вже маєте акаунт? <a asp-action="Login" class="text-primary fw-semibold text-decoration-none">Увійти</a></p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

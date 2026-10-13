@@ -1,0 +1,38 @@
+﻿@model lesson6_ASP.NET.Models.Comment
+
+@{
+    ViewData["Title"] = "Видалити коментар";
+}
+
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card shadow-sm border-danger">
+            <div class="card-body p-4 text-center">
+                <div class="text-danger display-4 mb-3">
+                    <i class="bi bi-trash"></i>
+                </div>
+                <h3 class="fw-bold mb-2">Підтвердження видалення коментаря</h3>
+                <p class="text-muted mb-4">Ви дійсно хочете видалити цей коментар?</p>
+
+                <div class="card bg-light text-start mb-4 p-3 border-0">
+                    <p class="text-muted small mb-1">Автор: <strong>@Model.Author</strong></p>
+                    <p class="text-secondary mb-0">@Model.Text</p>
+                </div>
+
+                <!-- Форма передає об'єкт Comment через приховані поля для POST-методу -->
+                <form asp-action="Delete" method="post">
+                    <input type="hidden" asp-for="Id" />
+                    <input type="hidden" asp-for="PostId" />
+                    <input type="hidden" asp-for="Author" />
+                    <input type="hidden" asp-for="Text" />
+                    <input type="hidden" asp-for="CreatedAt" />
+
+                    <div class="d-flex justify-content-center gap-2 mt-4">
+                        <a asp-controller="Post" asp-action="Details" asp-route-id="@Model.PostId" class="btn btn-outline-secondary px-4">Скасувати</a>
+                        <button type="submit" class="btn btn-danger px-4">Підтвердити видалення</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

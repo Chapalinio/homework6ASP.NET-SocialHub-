@@ -1,0 +1,46 @@
+@model lesson6_ASP.NET.Models.Post
+
+@{
+    ViewData["Title"] = "Створити пост";
+    // Отримуємо ім'я поточного користувача з куки
+    var currentUsername = Context.Request.Cookies["Username"] ?? "Гість";
+}
+
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card shadow-sm">
+            <div class="card-body p-4">
+                <h2 class="fw-bold mb-4 text-center"><i class="bi bi-plus-circle"></i> Новий пост</h2>
+
+                <form asp-action="Create">
+                    <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                    <!-- Ховаємо поле автора, але передаємо значення автоматично через куку -->
+                    <input type="hidden" asp-for="Author" value="@currentUsername" />
+
+                    <!-- Для зручності можемо просто вивести інформацію, хто створює пост -->
+                    <div class="alert alert-light border mb-3 py-2">
+                        <small class="text-muted">Автор поста: <strong class="text-dark">@currentUsername</strong></small>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Title" class="form-label fw-semibold">Заголовок</label>
+                        <input asp-for="Title" class="form-control" placeholder="Заголовок поста..." />
+                        <span asp-validation-for="Title" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Text" class="form-label fw-semibold">Текст</label>
+                        <textarea asp-for="Text" class="form-control" rows="5" placeholder="Про що ви хочете розповісти?"></textarea>
+                        <span asp-validation-for="Text" class="text-danger"></span>
+                    </div>
+
+                    <div class="d-flex justify-content-between align-items-center mt-4">
+                        <a asp-action="Index" class="btn btn-outline-secondary">Скасувати</a>
+                        <button type="submit" class="btn btn-primary px-4">Опублікувати</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
